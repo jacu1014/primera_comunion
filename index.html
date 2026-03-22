@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Aventura de Primera Comunión 🌟</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         :root {
-            --oro: #FFD700;
-            --uva: #8E44AD;
-            --celeste: #AED6F1;
-            --fondo: #FDFEFE;
-            --verde: #27AE60;
-            --texto-base: #bdc3c7;
+            --oro: #D4AF37; /* Oro más real */
+            --oro-claro: #F1E5AC;
+            --uva: #5B2C6F; /* Morado litúrgico */
+            --celeste: #EBF5FB;
+            --fondo: #F4F4F4;
+            --verde: #145A32; /* Verde eclesiástico */
+            --blanco-papel: #FDFCF0; /* Color crema/pergamino */
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: var(--fondo);
+            /* Textura sutil de fondo */
+            background-image: radial-gradient(var(--oro-claro) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -24,43 +29,63 @@
             padding-bottom: 50px;
         }
 
+        /* Barra de progreso con estilo de cinta */
         .progress-container {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 15px;
-            background: #eee;
+            height: 12px;
+            background: #d1d1d1;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         #progress-bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, var(--oro), #FFF59D);
-            box-shadow: 0 0 15px var(--oro);
+            background: linear-gradient(90deg, var(--oro), #FFD700);
             transition: width 0.8s ease;
         }
 
         header {
-            margin-top: 50px;
+            margin-top: 60px;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
+            background: white;
+            border: 3px double var(--oro);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 600px;
         }
 
-        h1 { color: var(--uva); font-size: 2.2rem; margin: 0; }
-        
+        h1 { 
+            font-family: 'Cinzel', serif; 
+            color: var(--uva); 
+            font-size: 2rem; 
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .sub-titulo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: var(--oro);
+            margin-top: 5px;
+        }
+
         .btn-reset {
             margin-top: 15px;
-            background: #fdf2f2;
-            color: #e74c3c;
-            border: 2px solid #e74c3c;
-            padding: 8px 15px;
-            border-radius: 10px;
+            background: transparent;
+            color: #7f8c8d;
+            border: 1px solid #bdc3c7;
+            padding: 5px 15px;
+            border-radius: 20px;
             cursor: pointer;
-            font-weight: bold;
+            font-size: 0.8rem;
             transition: 0.3s;
         }
-        .btn-reset:hover { background: #fee2e2; }
+        .btn-reset:hover { color: var(--uva); border-color: var(--uva); }
 
         .grid {
             display: grid;
@@ -68,94 +93,85 @@
             gap: 30px;
             width: 90%;
             max-width: 1100px;
-            padding: 20px;
+            padding: 40px 20px;
             perspective: 1500px;
         }
 
-        .card-container {
-            height: 480px;
-            cursor: pointer;
-        }
-
+        /* DISEÑO DE TARJETAS MANTENIDO PERO ESTILIZADO */
+        .card-container { height: 480px; cursor: pointer; }
         .card {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 25px;
         }
-
         .card.flipped { transform: rotateY(180deg); }
 
         .front, .back {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             backface-visibility: hidden;
-            border-radius: 25px;
+            border-radius: 15px;
             padding: 25px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
         .front {
-            background: linear-gradient(135deg, var(--celeste), #ebf5fb);
+            background: white;
             justify-content: center;
             align-items: center;
-            border: 5px solid white;
+            border: 4px inset var(--oro-claro);
+            /* Marca de agua sutil (Cruz) */
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
         }
 
         .back {
-            background: white;
+            background: var(--blanco-papel);
             transform: rotateY(180deg);
-            border: 5px solid var(--oro);
+            border: 4px double var(--oro);
             text-align: left;
-            overflow-y: auto;
         }
+
+        .card.learned .front {
+            border-color: var(--verde);
+            background: #F0F9F4;
+        }
+
+        h2 { font-family: 'Cinzel', serif; color: var(--uva); font-size: 1.4rem; text-align: center; }
+        h3 { font-family: 'Cinzel', serif; color: var(--uva); border-bottom: 2px solid var(--oro); padding-bottom: 5px; }
 
         .texto-oracion {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            color: var(--texto-base);
-            transition: color 4s ease-in-out, text-shadow 2s;
-            margin-bottom: 20px;
-        }
-
-        .card.flipped .texto-oracion {
-            color: var(--uva);
-            text-shadow: 0 0 1px rgba(142, 68, 173, 0.2);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #2c3e50;
         }
 
         .btn-finish {
-            background: var(--verde);
+            background: var(--uva);
             color: white;
             border: none;
             padding: 12px;
-            border-radius: 50px;
+            border-radius: 5px;
+            font-family: 'Cinzel', serif;
             font-weight: bold;
             cursor: pointer;
-            width: 100%;
             margin-top: auto;
-            box-shadow: 0 4px 0 #1e8449;
+            box-shadow: 0 4px 0 #4A235A;
         }
-        .btn-finish:active { transform: translateY(2px); box-shadow: 0 2px 0 #1e8449; }
-
-        .card.learned .front { background: #D4EFDF; border-color: #2ECC71; }
-
-        h3 { color: var(--uva); margin-top: 0; border-bottom: 2px solid var(--oro); padding-bottom: 5px; }
+        .btn-finish:active { transform: translateY(2px); box-shadow: 0 2px 0 #4A235A; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="progress-container"><div id="progress-bar"></div></div>
 
     <header>
-        <h1>✨ Mi Mapa de Oración ✨</h1>
-        <button class="btn-reset" onclick="resetAll()">🔄 Reiniciar Aventura</button>
+        <h1>Preparación Sagrada</h1>
+        <div class="sub-titulo">Mi Camino a la Eucaristía</div>
+        <button class="btn-reset" onclick="resetAll()">🔄 Reiniciar Progreso</button>
     </header>
 
     <div class="grid" id="game-grid"></div>
@@ -163,6 +179,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
     <script>
+        // Los datos se mantienen iguales
         const oraciones = [
             { icon: "🙏", tit: "Yo Confieso", txt: "Yo confieso ante Dios todopoderoso y ante vosotros, hermanos, que he pecado mucho de pensamiento, palabra, obra y omisión. Por mi culpa, por mi culpa, por mi gran culpa. Por eso ruego a Santa María, siempre Virgen, a los ángeles, a los santos y a vosotros, hermanos, que intercedáis por mí ante Dios, nuestro Señor. Amén." },
             { icon: "🎶", tit: "Gloria", txt: "Gloria a Dios en el cielo, y en la tierra paz a los hombres que ama el Señor. Por tu inmensa gloria te alabamos, te bendecimos, te adoramos, te glorificamos, te damos gracias, Señor Dios, Rey celestial, Dios Padre todopoderoso. Señor, Hijo único, Jesucristo; Señor Dios, Cordero de Dios, Hijo del Padre; tú que quitas el pecado del mundo, ten piedad de nosotros; tú que quitas el pecado del mundo, atiende nuestra súplica; tú que estás sentado a la derecha del Padre, ten piedad de nosotros; porque solo tú eres Santo, solo tú Señor, solo tú Altísimo, Jesucristo, con el Espíritu Santo en la gloria de Dios Padre. Amén." },
@@ -186,19 +203,17 @@
                     <div class="card ${isLearned}" id="card-${i}">
                         <div class="front">
                             <div style="font-size:4.5rem; margin-bottom:10px;">${o.icon}</div>
-                            <h2 style="margin:0; color:var(--uva);">${o.tit}</h2>
-                            <p style="color:#7f8c8d; font-weight:bold; margin-top:15px;">
-                                ${learnedStates[i] ? '✅ ¡Aprendida!' : '¡Toca para leer! ➔'}
+                            <h2>${o.tit}</h2>
+                            <p style="color:var(--oro); font-weight:bold; margin-top:15px; font-family:'Cinzel', serif; font-size:0.8rem;">
+                                ${learnedStates[i] ? '📜 APRENDIDA' : 'TOCAR PARA ABRIR'}
                             </p>
                         </div>
                         <div class="back">
-                            <h3 style="margin-top:0; color:var(--uva);">${o.tit}</h3>
-                            <div style="flex-grow:1; overflow-y:auto; padding-right:10px; margin-bottom:10px; border-radius:10px;">
-                                <p class="texto-oracion" style="color:#2c3e50; font-weight:500; transition: color 4s ease-in;">
-                                    ${o.txt}
-                                </p>
+                            <h3>${o.tit}</h3>
+                            <div style="flex-grow:1; overflow-y:auto; padding-right:10px; margin-bottom:10px;">
+                                <p class="texto-oracion">${o.txt}</p>
                             </div>
-                            <button class="btn-finish" onclick="finish(${i}, event)">¡Misión Cumplida! ⭐</button>
+                            <button class="btn-finish" onclick="finish(${i}, event)">Marcar como Aprendida</button>
                         </div>
                     </div>
                 `;
@@ -217,9 +232,16 @@
                 learnedCount++;
                 save();
                 updateProgressBar();
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#FFD700', '#FFFFFF', '#8E44AD'] });
+                // Confeti de colores blanco y oro (Vaticano)
+                confetti({ 
+                    particleCount: 150, 
+                    spread: 70, 
+                    origin: { y: 0.6 }, 
+                    colors: ['#D4AF37', '#FFFFFF', '#F1E5AC'] 
+                });
             }
             card.classList.remove('flipped');
+            setTimeout(render, 800); // Re-render para actualizar etiquetas
         }
 
         function updateProgressBar() {
@@ -233,7 +255,7 @@
         }
 
         function resetAll() {
-            if(confirm("¿Quieres empezar de nuevo tu mapa de oración?")) {
+            if(confirm("¿Deseas reiniciar tu camino de preparación?")) {
                 learnedCount = 0;
                 learnedStates = new Array(oraciones.length).fill(false);
                 save();
